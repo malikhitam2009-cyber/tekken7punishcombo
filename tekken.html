@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tekken 7 - Pro Punish Combo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), 
+                        url('https://images.alphacoders.com/922/922000.jpg') fixed center/cover;
+            color: #fff;
+            font-family: 'Press Start 2P', sans-serif;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(183, 28, 28, 0.95);
+            padding: 25px;
+            text-align: center;
+            border-bottom: 8px solid #ffd700;
+            text-shadow: 3px 3px 0 #000;
+        }
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 4px;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border: 4px solid #ffd700;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .char-btn {
+            background: #111;
+            border: 3px solid #ffd700;
+            color: #fff;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .char-btn:hover, .char-btn.active {
+            background: #b71c1c;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ffd700;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .char-info {
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            border: 5px solid #ffd700;
+            text-align: center;
+        }
+        .char-info img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            border: 6px solid #ffd700;
+            image-rendering: crisp-edges;
+            object-fit: contain;
+        }
+        .char-desc {
+            font-size: 0.65rem;
+            line-height: 1.6;
+            color: #ccc;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-top: 2px dashed #ffd700;
+            text-align: center;
+        }
+        .combo-card {
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 8px solid #ffd700;
+            border-right: 2px solid rgba(255,255,255,0.1);
+            border-top: 2px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+        .notation-flow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .step-box {
+            background: #111;
+            border: 2px solid #555;
+            padding: 10px 15px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 4px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tk-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-family: 'Press Start 2P', sans-serif;
+            font-size: 0.65rem;
+            color: #fff;
+            text-shadow: 1px 1px 0 #000;
+            border: 2px solid #000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .tk-1 { background: #4a90e2; } 
+        .tk-2 { background: #e02020; } 
+        .tk-3 { background: #2f9e44; } 
+        .tk-4 { background: #f5a623; } 
+        
+        .step-arrow {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .damage { color: #ffd700; font-weight: bold; }
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.9);
+            margin-top: 50px;
+            border-top: 6px solid #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TEKKEN 7</h1>
+        <p>PRO PUNISH COMBO GUIDE</p>
+    </header>
+
+    <div class="container">
+        <div class="nav" id="charNav"></div>
+        <div class="content" id="mainContent"></div>
+    </div>
+
+    <footer>
+        <p>BY MALIK MARBOT</p>
+    </footer>
+
+    <script>
+        const characters = [
+            {name:"Kazuya", image:"Kazuya.jpg", description:"Petarung Mishima sejati dengan gaya karate tingkat tinggi. Mengandalkan serangan legendaris EWGF (Electric Wind God Fist) dan tebakan 50/50 vortex yang mematikan saat musuh jatuh.", combos:[{name:"EWGF Punish", steps:["f", "N", "d", "df+1"], damage:"~80+", note:"Signature pro Mishima"}] },
+            {name:"Jin", image:"Jin.jpg", description:"Protagonis yang menguasai Karate Tradisional. Karakter yang sangat seimbang (all-rounder) dengan poke yang aman, parry unik, serta combo yang konsisten di segala situasi.", combos:[{name:"10f Kazama", steps:["1, 2, 1, 2", "f+1, 2, 4"], damage:"~68", note:"Reliable block punish"}] },
+            {name:"Paul", image:"Paul.jpg", description:"Karakter legendaris bermodal bela diri Judo dan Karate. Terkenal dengan 'Deathfist'-nya yang punya damage di luar nalar. Sangat kuat dalam urusan serangan balasan (Counter Hit).", combos:[{name:"Deathfist CH", steps:["qcf+2 (CH)", "f, f+1+2"], damage:"~78", note:"Insane power damage"}] },
+            {name:"Lili", image:"Lili.jpg", description:"Gadis kaya asal Monako dengan gaya bertarung jalanan yang anggun bak senam gimnastik. Punya pergerakan menyamping (sidestep) terbaik untuk menghindari serangan musuh.", combos:[{name:"Dew Glide Punish", steps:["f, f+4", "1, 2", "f+1+2"], damage:"~72", note:"Stylish launcher"}] },
+            {name:"Asuka", image:"Asuka.jpg", description:"Menguasai Seni Bela Diri Tradisional Gaya Kazama. Ratu pertahanan yang ahli membalikkan serangan (parry) dan memiliki counter hit maut untuk menghukum musuh yang tidak sabaran.", combos:[{name:"Sacred Blade", steps:["d, df+1+2", "f, f+1, 2"], damage:"~62", note:"Very safe panic tool launcher"}] },
+            {name:"Bryan", image:"Bryan.jpg", description:"Cyborg gila penganut Kickboxing yang brutal. Kuat dalam menjaga jarak (keep-out) dan memiliki mekanik 'Taunt' yang tidak bisa diblokir oleh lawan jika dieksekusi dengan sempurna.", combos:[{name:"Taunt Jet Upper", steps:["TAUNT", "f+2", "b+1"], damage:"~85", note:"Frame perfect pro combo"}] },
+            {name:"Dragunov", image:"Dragunov.jpg", description:"Tentara Rusia yang menggunakan Sambo Militer. Spesialis tekanan konstan (pressure) lewat pukulan 'Running 2' dan kuncian bawah tanah yang menyiksa mental lawan.", combos:[{name:"WR 2 Punish", steps:["f, f, f+2", "d+2, 4", "f, f+1+2"], damage:"~68", note:"Excellent pressure starter"}] },
+            {name:"Heihachi", image:"Heihachi.jpg", description:"Mantan kepala keluarga Mishima dengan gaya bertarung super agresif. Punya serangan mid-hit terbaik and EWGF super cepat.", combos:[{name:"EWGF", steps:["f", "N", "d", "df+1"], damage:"~78", note:"Excellent recovery"}] },
+            {name:"Lee", image:"Lee.jpg", description:"Karakter paling elegan yang bertarung dengan gaya 'Excellent' seni bela diri fiktif. Sangat kuat dalam serangan balik jarak dekat.", combos:[{name:"Hitman Launcher", steps:["d+3+4", "WS+2, 4"], damage:"~75", note:"Excellent and elegant"}] },
+            {name:"Leroy", image:"Leroy.jpg", description:"Grandmaster Wing Chun asal New York yang sangat karismatik. Dilengkapi dengan sistem parry otomatis terbaik.", combos:[{name:"Parry Combo", steps:["b+1+3", "Parry", "f+2, 4"], damage:"High", note:"Grandmaster defense"}] },
+            {name:"Steve", image:"Steve.jpg", description:"Petinju juara dunia yang tidak menggunakan tendangan sama sekali. Gaya mainnya berfokus pada kelincahan menghindar (sway/ducking).", combos:[{name:"Sonic Blaster", steps:["b+1 (CH)", "df+1+2", "f, f+2"], damage:"~76", note:"Fastest boxing counter counter-hit"}] },
+            {name:"Hwoarang", image:"Hwoarang.jpg", description:"Ahli Taekwondo asal Korea Selatan yang punya variasi tendangan tanpa batas. Mengandalkan transisi kuda-kuda (stance) yang membingungkan musuh.", combos:[{name:"Skyrocket Launcher", steps:["f, N, d, df+4", "During Flamingo", "uf+3, 4, 4"], damage:"~82", note:"Just-frame execution heavy"}] },
+            {name:"Alisa", image:"Alisa.jpg", description:"Cyborg dengan gaya bertarung unik bertenaga jet pendorong. Mampu mengeluarkan gergaji mesin (chainsaw) dari tangannya.", combos:[{name:"Chainsaw Upper", steps:["d+1+2", "f, f+1+2"], damage:"~65", note:"High reach safety"}] },
+            {name:"Akuma", image:"Akuma.jpg", description:"Karakter tamu dari Street Fighter yang membawa mekanik game 2D ke Tekken. Punya proyektil (Hadouken), meter EX, dan combo FADC.", combos:[{name:"Fadc Hadouken", steps:["f, d, df+2", "FADC", "f, f+2, 4"], damage:"~90+", note:"Guest style resource heavy"}] },
+            {name:"Armor King", image:"Armor King.jpg", description:"Pegulat topeng misterius penganut Pro-Wrestling gelap. Kombinasi mematikan antara teknik bantingan berdamage besar dan pukulan Mishima.", combos:[{name:"Dark Upper", steps:["f, N, d, df+2", "f, f+1+2"], damage:"~74", note:"Grappler launcher"}] },
+            {name:"Anna", image:"Anna.jpg", description:"Adik dari Nina yang menggunakan teknik pembunuhan berbasis mix-up instan lewat kuda-kuda 'Chaos Judgment'.", combos:[{name:"Chaos Judgment", steps:["df+1+2", "f, f+4"], damage:"~70", note:"Mix-up setup"}] },
+            {name:"Bob", image:"Bob.jpg", description:"Petarung berbadan besar namun memiliki kecepatan luar biasa. Menggunakan Karate Gaya Bebas dengan kelincahan udara.", combos:[{name:"Starburst Burst", steps:["f, f+2", "b+1+2"], damage:"~75", note:"Star power active"}] },
+            {name:"Chole", image:"Chloe.jpg", description:"Gadis dengan kostum kucing penari J-Pop. Menipu lawan dengan tarian ritme yang menggemaskan, namun menyimpan damage combo tertinggi.", combos:[{name:"California Roll", steps:["db+3+4", "3, 4", "1+2"], damage:"~95", note:"Absurdly high damage rhythm"}] },
+            {name:"Devil Jin", image:"Devil Jin.jpg", description:"Jin versi iblis yang mempertahankan gaya bela diri Mishima klasik. Memiliki laser, serangan udara, dan paket move-list terlengkap.", combos:[{name:"PEWGF Punish", steps:["f, N, df+1", "f, f+1+2"], damage:"~84", note:"Top tier execution"}] },
+            {name:"Eddy", image:"Eddy.jpg", description:"Ikon Capoeira yang terkenal dengan gerakan memutar dan tiarap yang ekstrem. Sangat ahli dalam menghindari serangan.", combos:[{name:"Capoeira Slippery", steps:["df+3+4", "3, 4"], damage:"~65", note:"Evasive stance launcher"}] },
+            {name:"Eliza", image:"Eliza.jpg", description:"Vampir yang menggunakan sistem meter 2D ala game fighting klasik. Mengandalkan serangan proyektil dan taktik jebakan saat musuh tidur.", combos:[{name:"Moonglide Ex", steps:["qcf+1+2", "Ex Jump"], damage:"~70", note:"Meter reliance"}] },
+            {name:"Fahkumram", image:"Fahkumram.jpg", description:"Raksasa Muay Thai asal Thailand. Monster dalam mendesak lawan ke ujung stage (wall carry).", combos:[{name:"Muay Thai Knee", steps:["df+1+2", "f, f+4"], damage:"~75", note:"Wall-carry beast"}] },
+            {name:"Ganryu", image:"Ganryu.jpg", description:"Pesumo handal dengan jangkauan tangan yang lebar. Sangat dominan dalam pertarungan jarak dekat lewat tamparan bertubi-tubi.", combos:[{name:"Sumo Stomp Launcher", steps:["df+2+3", "f, f+1"], damage:"~72", note:"Heavy pressure tool"}] },
+            {name:"Gigas", image:"Gigas.jpg", description:"Manusia eksperimen raksasa dengan jangkauan pukulan terjauh. Karakter andalan untuk menghukum kesalahan kecil musuh.", combos:[{name:"Overkill Punish", steps:["f, f+1+2", "sg+4"], damage:"~80", note:"10f punish champion"}] },
+            {name:"Geese", image:"Geese.jpg", description:"Bos kriminal dari seri Fatal Fury (SNK). Mengandalkan serangan parry atas/bawah yang legendaris dan bar MAX.", combos:[{name:"Rashomon Max", steps:["Fow+2", "MAX mode", "qcf+1+2"], damage:"~95", note:"Deadly SNK guest meter"}] },
+            {name:"Jack-7", image:"Jack-7.jpg", description:"Robot militer raksasa yang menjadi andalan para pemain turnamen berkat poke jarak jauhnya yang sangat aman.", combos:[{name:"Jack Upper", steps:["df+2", "f, f+1+2"], damage:"~70", note:"Amazing range keepout"}] },
+            {name:"Julia", image:"Julia.jpg", description:"Menggunakan Kung Fu berbasis Xin Yi Liu He Quan. Karakter agresif dengan mobilitas tinggi, eksekusi combo cepat.", combos:[{name:"Party Crasher", steps:["f, f+1", "d, df+1, 2"], damage:"~75", note:"Very high execution speed"}] },
+            {name:"Josie", image:"Josie.jpg", description:"Model asal Filipina yang menguasai Eskrima dan Kickboxing. Karakter lincah yang berfokus pada jebakan Counter Hit.", combos:[{name:"SWS Launcher", steps:["f+2+3", "Switch stance"], damage:"~73", note:"Counter-hit oriented"}] },
+            {name:"Katarina", image:"Katarina.jpg", description:"Petarung asal Brasil dengan gaya Savate. Sangat ramah bagi pemula karena memiliki tombol kombo yang mudah diingat.", combos:[{name:"Harrier Combo", steps:["uf+4", "Harrier step"], damage:"~68", note:"Beginner friendly setup"}] },
+            {name:"Kazumi", image:"Kazumi.jpg", description:"Istri Heihachi yang bertarung dengan gaya Karate Mishima murni yang disederhanakan. Sangat disiplin dan aman.", combos:[{name:"Tiger Summon", steps:["f, f+2", "Tiger upper"], damage:"~66", note:"Fundamentally safe poke"}] },
+            {name:"Kunimitsu", image:"Kunimitsu.jpg", description:"Ninja wanita lincah yang menggunakan belati kunai. Memiliki pergerakan teleportasi cepat.", combos:[{name:"Kunai Teleport", steps:["qcf+1", "Aerial flip"], damage:"~70", note:"Highly evasive and fast"}] },
+            {name:"Kuma", image:"Kuma.jpg", description:"Beruang peliharaan Heihachi yang menguasai 'Kuma Shinken'. Memiliki hit-box unik.", combos:[{name:"Salmon Hunting", steps:["f, f+1+2", "Bear roll"], damage:"~74", note:"Short legs but big damage"}] },
+            {name:"Lars", image:"Lars.jpg", description:"Pasukan pemberontak bergaya bertarung fiktif yang super cepat dan dinamis. Terkenal sebagai raja pembawa musuh ke ujung stage.", combos:[{name:"Lightning Screw", steps:["uf+3", "Silent Entry"], damage:"~72", note:"Buffed wall carry master"}] },
+            {name:"Lei", image:"Lei.jpg", description:"Detektif legendaris yang menguasai Kung Fu Lima Bayangan Binatang & Dewa Mabuk. Memiliki total lebih dari 50 kuda-kuda bertarung.", combos:[{name:"Razor Rush Stance", steps:["f, N+1, 2, 1, 2", "Drunken"], damage:"~68", note:"50+ unique stances mixup"}] },
+            {name:"Leo", image:"Leo.jpg", description:"Menguasai seni bela diri Tiongkok, Baji Quan. Karakter yang sangat seimbang, kokoh dalam bertahan.", combos:[{name:"Baji Upper", steps:["df+2", "Kankho step"], damage:"~70", note:"Perfect wall travel distance"}] },
+            {name:"Lidia", image:"Lidia.jpg", description:"Perdana Menteri Polandia yang menguasai Karate Tradisional Shotokan. Sangat kuat dalam pola serangan maju mendesak.", combos:[{name:"Political Strike", steps:["f, f+2", "Cat Stance"], damage:"~74", note:"Strong karate rushdown"}] },
+            {name:"Master Raven", image:"Master Raven.jpg", description:"Agen rahasia penganut Ninjutsu tingkat tinggi. Keunikan utamanya terletak pada posisi bertarung membelakangi lawan.", combos:[{name:"Backturn Launcher", steps:["b+1+2", "Backturn stance"], damage:"~78", note:"Tricky hitbox properties"}] },
+            {name:"Marduk", image:"Marduk.jpg", description:"Petarung Vale Tudo raksasa berdaya hancur tinggi. Teror utamanya adalah mekanik kuncian lantai (Mount Tackle).", combos:[{name:"Mount Tackle Smash", steps:["VTS stance", "1+2", "Grab"], damage:"~85", note:"Terrifying grab threat"}] },
+            {name:"Miguel", image:"Miguel.jpg", description:"Brawler asal Spanyol dengan gaya berantem jalanan yang liar dan kasar. Mengandalkan jangkauan langkah kaki yang lebar.", combos:[{name:"Savage Launcher", steps:["Savage+df+1", "f, f+1"], damage:"~75", note:"Heavy brawler rush"}] },
+            {name:"Negan", image:"Negan.jpg", description:"Karakter tamu ikonik dari serial The Walking Dead. Bertarung menggunakan pemukul kasti kawat berduri 'Lucille'.", combos:[{name:"Lucille Home Run", steps:["f, f+1+2", "Intimidate"], damage:"~76", note:"Walking Dead crossover smash"}] },
+            {name:"Nina", image:"Nina.jpg", description:"Pembunuh bayaran berdarah dingin yang menggunakan Aikido dan Koppojutsu. Memiliki tingkat kesulitan eksekusi jari tertinggi.", combos:[{name:"Butterfly Loop", steps:["qcf+1", "iWS+1", "Repeat"], damage:"~80", note:"Extremely high execution loop"}] },
+            {name:"Noctis", image:"Noctis.jpg", description:"Pangeran dari Final Fantasy XV. Mampu memanggil pedang dan tombak sihir dari jarak jauh.", combos:[{name:"Warp Strike Punish", steps:["f+2+3", "f, f+1"], damage:"~70", note:"Full-screen long range launcher"}] },
+            {name:"Panda", image:"Panda.jpg", description:"Sahabat Ling Xiaoyu yang berbagi set gerakan yang sama dengan Kuma, namun memiliki Rage Art kosmetik yang berbeda.", combos:[{name:"Bear Hug Slam", steps:["df+1+2", "Sit stance"], damage:"~74", note:"Same as Kuma combo properties"}] },
+            {name:"Shaheen", image:"Shaheen.jpg", description:"Petarung militer asal Arab Saudi yang fokus pada fundamental murni bela diri praktis.", combos:[{name:"Stealth Step Slide", steps:["df+2", "Slide cancel"], damage:"~68", note:"Basic fundamental setup"}] },
+            {name:"Zafina", image:"Zafina.jpg", description:"Petarung kuno yang bergerak lincah merayap bak laba-laba. Punya hitbox tubuh terendah.", combos:[{name:"Scarecrow Launcher", steps:["Scarecrow+df+4", "f, f+1"], damage:"~74", note:"Top tier evasive movement"}] }
+        ];
+
+        function formatTekkenButtons(text) {
+            return text.replace(/[1234]/g, function(match) {
+                return `<span class="tk-btn tk-${match}">${match}</span>`;
+            });
+        }
+
+        function createNav() {
+            const nav = document.getElementById('charNav');
+            characters.forEach((char, i) => {
+                const btn = document.createElement('button');
+                btn.className = `char-btn ${i===0 ? 'active' : ''}`;
+                btn.textContent = char.name;
+                btn.onclick = () => showChar(i);
+                nav.appendChild(btn);
+            });
+        }
+
+        function showChar(index) {
+            const char = characters[index];
+            const content = document.getElementById('mainContent');
+            
+            let html = `
+                <div class="char-info">
+                    <img src="${char.image}" alt="${char.name}">
+                    <h2>${char.name}</h2>
+                    <div class="char-desc">${char.description}</div>
+                </div>
+                <div>
+                    <h2 style="color:#ffd700;">PRO PUNISH COMBOS</h2>
+            `;
+
+            char.combos.forEach(c => {
+                html += `
+                    <div class="combo-card">
+                        <h3>${c.name} <span class="damage">${c.damage}</span></h3>
+                        <div class="notation-flow">
+                `;
+
+                c.steps.forEach((step, stepIndex) => {
+                    const formattedStep = formatTekkenButtons(step);
+                    html += `<div class="step-box">${formattedStep}</div>`;
+                    
+                    if (stepIndex < c.steps.length - 1) {
+                        html += `<div class="step-arrow">➔</div>`;
+                    }
+                });
+
+                html += `
+                        </div>
+                        <small style="color: #aaa;">${c.note}</small>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            content.innerHTML = html;
+
+            document.querySelectorAll('.char-btn').forEach((b,i) => b.classList.toggle('active', i===index));
+        }
+
+        window.onload = () => {
+            createNav();
+            showChar(0);
+        };
+    </script>
+</body>
+</html>
