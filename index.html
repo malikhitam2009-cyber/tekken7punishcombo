@@ -176,322 +176,53 @@
     </footer>
 
     <script>
-        const characters = [
-    {
-        name: "Kazuya", 
-        image: "Kazuya.jpg", 
-        descriptionIndo: "Petarung Mishima sejati dengan gaya karate tingkat tinggi. Mengandalkan serangan legendaris EWGF (Electric Wind God Fist) dan tebakan 50/50 vortex yang mematikan saat musuh jatuh.", 
-        descriptionEng: "A true Mishima fighter utilizing high-level Karate. Relies on the legendary EWGF (Electric Wind God Fist) and a deadly 50/50 vortex to demolish opponents upon knockdown.",
-        combos: [{ name: "EWGF Punish", steps: ["f", "N", "d", "df+1"], damage: "~80+", noteIndo: "Signature pro Mishima", noteEng: "Signature pro Mishima move" }] 
-    },
-    {
-        name: "Jin", 
-        image: "Jin.jpg", 
-        descriptionIndo: "Protagonis yang menguasai Karate Tradisional. Karakter yang sangat seimbang (all-rounder) dengan poke yang aman, parry unik, serta combo yang konsisten di segala situasi.", 
-        descriptionEng: "The protagonist who masterfully uses Traditional Karate. A perfectly balanced all-rounder featuring safe pokes, a unique parry, and consistent combos for any situation.",
-        combos: [{ name: "10f Kazama", steps: ["1, 2, 1, 2", "f+1, 2, 4"], damage: "~68", noteIndo: "Reliable block punish", noteEng: "Reliable block punish" }] 
-    },
-    {
-        name: "Paul", 
-        image: "Paul.jpg", 
-        descriptionIndo: "Karakter legendaris bermodal bela diri Judo dan Karate. Terkenal dengan 'Deathfist'-nya yang punya damage di luar nalar. Sangat kuat dalam urusan serangan balasan (Counter Hit).", 
-        descriptionEng: "A legendary fighter blending Judo and Karate. Infamous for his devastating 'Deathfist' that deals absurd damage, making him exceptionally strong at Counter Hits.",
-        combos: [{ name: "Deathfist CH", steps: ["qcf+2 (CH)", "f, f+1+2"], damage: "~78", noteIndo: "Insane power damage", noteEng: "Insane power damage" }] 
-    },
-    {
-        name: "Lili", 
-        image: "Lili.jpg", 
-        descriptionIndo: "Gadis kaya asal Monako dengan gaya bertarung jalanan yang anggun bak senam gimnastik. Punya pergerakan menyamping (sidestep) terbaik untuk menghindari serangan musuh.", 
-        descriptionEng: "A wealthy girl from Monaco with an elegant, gymnastic-like street fighting style. Possesses the best sidestep in the game to effortlessly evade enemy attacks.",
-        combos: [{ name: "Dew Glide Punish", steps: ["f, f+4", "1, 2", "f+1+2"], damage: "~72", noteIndo: "Stylish launcher", noteEng: "Stylish launcher" }] 
-    },
-    {
-        name: "Asuka", 
-        image: "Asuka.jpg", 
-        descriptionIndo: "Menguasai Seni Bela Diri Tradisional Gaya Kazama. Ratu pertahanan yang ahli membalikkan serangan (parry) dan memiliki counter hit maut untuk menghukum musuh yang tidak sabaran.", 
-        descriptionEng: "Master of the Kazama Style Traditional Martial Arts. A defensive queen specialized in attack reversals (parries) and lethal counter-hits to punish impatient opponents.",
-        combos: [{ name: "Sacred Blade", steps: ["d, df+1+2", "f, f+1, 2"], damage: "~62", noteIndo: "Very safe panic tool launcher", noteEng: "Very safe panic tool launcher" }] 
-    },
-    {
-        name: "Bryan", 
-        image: "Bryan.jpg", 
-        descriptionIndo: "Cyborg gila penganut Kickboxing yang brutal. Kuat dalam menjaga jarak (keep-out) dan memiliki mekanik 'Taunt' yang tidak bisa diblokir oleh lawan jika dieksekusi dengan sempurna.", 
-        descriptionEng: "A brutal, cyborg kickboxer. Highly dominant at keeping opponents out (keep-out) and equipped with an unblockable 'Taunt' mechanic if executed flawlessly.",
-        combos: [{ name: "Taunt Jet Upper", steps: ["TAUNT", "f+2", "b+1"], damage: "~85", noteIndo: "Frame perfect pro combo", noteEng: "Frame perfect pro combo" }] 
-    },
-    {
-        name: "Dragunov", 
-        image: "Dragunov.jpg", 
-        descriptionIndo: "Tentara Rusia yang menggunakan Sambo Militer. Spesialis tekanan konstan (pressure) lewat pukulan 'Running 2' dan kuncian bawah tanah yang menyiksa mental lawan.", 
-        descriptionEng: "A Russian military soldier utilizing Combat Sambo. Specializes in constant pressure via his iconic 'Running 2' punch and mind-breaking command grabs.",
-        combos: [{ name: "WR 2 Punish", steps: ["f, f, f+2", "d+2, 4", "f, f+1+2"], damage: "~68", noteIndo: "Excellent pressure starter", noteEng: "Excellent pressure starter" }] 
-    },
-    {
-        name: "Heihachi", 
-        image: "Heihachi.jpg", 
-        descriptionIndo: "Mantan kepala keluarga Mishima dengan gaya bertarung super agresif. Punya serangan mid-hit terbaik and EWGF super cepat.", 
-        descriptionEng: "The former head of the Mishima family with an ultra-aggressive fighting style. Features the best mid-hitting attacks and lightning-fast EWGF recovery.",
-        combos: [{ name: "EWGF", steps: ["f", "N", "d", "df+1"], damage: "~78", noteIndo: "Excellent recovery", noteEng: "Excellent recovery" }] 
-    },
-    {
-        name: "Lee", 
-        image: "Lee.jpg", 
-        descriptionIndo: "Karakter paling elegan yang bertarung dengan gaya 'Excellent' seni bela diri fiktif. Sangat kuat dalam serangan balik jarak dekat.", 
-        descriptionEng: "The most elegant fighter who battles with an ultra-stylish fictional martial art. Extremely strong at close-range counterattacks.",
-        combos: [{ name: "Hitman Launcher", steps: ["d+3+4", "WS+2, 4"], damage: "~75", noteIndo: "Excellent and elegant", noteEng: "Excellent and elegant" }] 
-    },
-    {
-        name: "Leroy", 
-        image: "Leroy.jpg", 
-        descriptionIndo: "Grandmaster Wing Chun asal New York yang sangat karismatik. Dilengkapi dengan sistem parry otomatis terbaik.", 
-        descriptionEng: "A highly charismatic Wing Chun Grandmaster from New York. Equipped with the best defensive automatic parry system in the game.",
-        combos: [{ name: "Parry Combo", steps: ["b+1+3", "Parry", "f+2, 4"], damage: "High", noteIndo: "Grandmaster defense", noteEng: "Grandmaster defense" }] 
-    },
-    {
-        name: "Steve", 
-        image: "Steve.jpg", 
-        descriptionIndo: "Petinju juara dunia yang tidak menggunakan tendangan sama sekali. Gaya mainnya berfokus pada kelincahan menghindar (sway/ducking).", 
-        descriptionEng: "A world champion boxer who fights completely without using any kicks. His gameplay heavily focuses on quick evasive maneuvers like sways and ducking.",
-        combos: [{ name: "Sonic Blaster", steps: ["b+1 (CH)", "df+1+2", "f, f+2"], damage: "~76", noteIndo: "Fastest boxing counter counter-hit", noteEng: "Fastest boxing counter-hit" }] 
-    },
-    {
-        name: "Hwoarang", 
-        image: "Hwoarang.jpg", 
-        descriptionIndo: "Ahli Taekwondo asal Korea Selatan yang punya variasi tendangan tanpa batas. Mengandalkan transisi kuda-kuda (stance) yang membingungkan musuh.", 
-        descriptionEng: "A South Korean Taekwondo master featuring an infinite variety of kicks. Specializes in seamless stance transitions to confuse and pressure the opponent.",
-        combos: [{ name: "Skyrocket Launcher", steps: ["f, N, d, df+4", "During Flamingo", "uf+3, 4, 4"], damage: "~82", noteIndo: "Just-frame execution heavy", noteEng: "Just-frame execution heavy" }] 
-    },
-    {
-        name: "Alisa", 
-        image: "Alisa.jpg", 
-        descriptionIndo: "Cyborg dengan gaya bertarung unik bertenaga jet pendorong. Mampu mengeluarkan gergaji mesin (chainsaw) dari tangannya.", 
-        descriptionEng: "A unique cyborg utilizing a jet-booster fighting style. Capable of sprouting chainsaws straight out of her hands to shred defenses.",
-        combos: [{ name: "Chainsaw Upper", steps: ["d+1+2", "f, f+1+2"], damage: "~65", noteIndo: "High reach safety", noteEng: "High reach safety" }] 
-    },
-    {
-        name: "Akuma", 
-        image: "Akuma.jpg", 
-        descriptionIndo: "Karakter tamu dari Street Fighter yang membawa mekanik game 2D ke Tekken. Punya proyektil (Hadouken), meter EX, dan combo FADC.", 
-        descriptionEng: "A guest character from Street Fighter bringing 2D mechanics into Tekken. Features projectiles (Hadouken), an EX meter, and devastating FADC combos.",
-        combos: [{ name: "Fadc Hadouken", steps: ["f, d, df+2", "FADC", "f, f+2, 4"], damage: "~90+", noteIndo: "Guest style resource heavy", noteEng: "Guest style resource heavy" }] 
-    },
-    {
-        name: "Armor King", 
-        image: "Armor King.jpg", 
-        descriptionIndo: "Pegulat topeng misterius penganut Pro-Wrestling gelap. Kombinasi mematikan antara teknik bantingan berdamage besar dan pukulan Mishima.", 
-        descriptionEng: "A mysterious masked luchador practicing dark Pro-Wrestling. A deadly combination of high-damage throwing techniques and Mishima-style strikes.",
-        combos: [{ name: "Dark Upper", steps: ["f, N, d, df+2", "f, f+1+2"], damage: "~74", noteIndo: "Grappler launcher", noteEng: "Grappler launcher" }] 
-    },
-    {
-        name: "Anna", 
-        image: "Anna.jpg", 
-        descriptionIndo: "Adik dari Nina yang menggunakan teknik pembunuhan berbasis mix-up instan lewat kuda-kuda 'Chaos Judgment'.", 
-        descriptionEng: "Nina's sister who utilizes assassin techniques based on instant mix-ups out of her 'Chaos Judgment' stance.",
-        combos: [{ name: "Chaos Judgment", steps: ["df+1+2", "f, f+4"], damage: "~70", noteIndo: "Mix-up setup", noteEng: "Mix-up setup" }] 
-    },
-    {
-        name: "Bob", 
-        image: "Bob.jpg", 
-        descriptionIndo: "Petir berbadan besar namun memiliki kecepatan luar biasa. Menggunakan Karate Gaya Bebas dengan kelincahan udara.", 
-        descriptionEng: "A large-framed fighter possessing incredible, lightning-fast speed. Utilizes Freeform Karate mixed with aerial agility.",
-        combos: [{ name: "Starburst Burst", steps: ["f, f+2", "b+1+2"], damage: "~75", noteIndo: "Star power active", noteEng: "Star power active" }] 
-    },
-    {
-        name: "Chole", 
-        image: "Chloe.jpg", 
-        descriptionIndo: "Gadis dengan kostum kucing penari J-Pop. Menibu lawan dengan tarian ritme yang menggemaskan, namun menyimpan damage combo tertinggi.", 
-        descriptionEng: "A girl wearing a cat costume who fights with J-Pop dance rhythms. Deceives opponents with cute animations while hiding some of the highest combo damage in the game.",
-        combos: [{ name: "California Roll", steps: ["db+3+4", "3, 4", "1+2"], damage: "~95", noteIndo: "Absurdly high damage rhythm", noteEng: "Absurdly high damage rhythm" }] 
-    },
-    {
-        name: "Devil Jin", 
-        image: "Devil Jin.jpg", 
-        descriptionIndo: "Jin versi iblis yang mempertahankan gaya bela diri Mishima klasik. Memiliki laser, serangan udara, dan paket move-list terlengkap.", 
-        descriptionEng: "The demonic version of Jin who retains the classic Mishima martial arts style. Equipped with lasers, airborne attacks, and a highly versatile move list.",
-        combos: [{ name: "PEWGF Punish", steps: ["f, N, df+1", "f, f+1+2"], damage: "~84", noteIndo: "Top tier execution", noteEng: "Top tier execution" }] 
-    },
-    {
-        name: "Eddy", 
-        image: "Eddy.jpg", 
-        descriptionIndo: "Ikon Capoeira yang terkenal dengan gerakan memutar dan tiarap yang ekstrem. Sangat ahli dalam menghindari serangan.", 
-        descriptionEng: "The Capoeira icon known for extreme spinning and ground-evading movements. Highly specialized in slipping under enemy attacks.",
-        combos: [{ name: "Capoeira Slippery", steps: ["df+3+4", "3, 4"], damage: "~65", noteIndo: "Evasive stance launcher", noteEng: "Evasive stance launcher" }] 
-    },
-    {
-        name: "Eliza", 
-        image: "Eliza.jpg", 
-        descriptionIndo: "Vampir yang menggunakan sistem meter 2D ala game fighting klasik. Mengandalkan serangan proyektil dan taktik jebakan saat musuh tidur.", 
-        descriptionEng: "A vampire utilizing a traditional 2D fighting game meter system. Relies heavily on divekicks, projectiles, and setup traps while opponents are grounded.",
-        combos: [{ name: "Moonglide Ex", steps: ["qcf+1+2", "Ex Jump"], damage: "~70", noteIndo: "Meter reliance", noteEng: "Meter reliance" }] 
-    },
-    {
-        name: "Fahkumram", 
-        image: "Fahkumram.jpg", 
-        descriptionIndo: "Raksasa Muay Thai asal Thailand. Monster dalam mendesak lawan ke ujung stage (wall carry).", 
-        descriptionEng: "A giant Muay Thai warrior from Thailand. An absolute monster when it comes to pushing opponents to the wall (wall carry).",
-        combos: [{ name: "Muay Thai Knee", steps: ["df+1+2", "f, f+4"], damage: "~75", noteIndo: "Wall-carry beast", noteEng: "Wall-carry beast" }] 
-    },
-    {
-        name: "Ganryu", 
-        image: "Ganryu.jpg", 
-        descriptionIndo: "Pesumo handal dengan jangkauan tangan yang lebar. Sangat dominan dalam pertarungan jarak dekat lewat tamparan bertubi-turbi.", 
-        descriptionEng: "A highly skilled Sumo wrestler with a massive arm reach. Dominates close-range battles using overwhelming slap strings.",
-        combos: [{ name: "Sumo Stomp Launcher", steps: ["df+2+3", "f, f+1"], damage: "~72", noteIndo: "Heavy pressure tool", noteEng: "Heavy pressure tool" }] 
-    },
-    {
-        name: "Gigas", 
-        image: "Gigas.jpg", 
-        descriptionIndo: "Manusia eksperimen raksasa dengan jangkauan pukulan terjauh. Karakter andalan untuk menghukum kesalahan kecil musuh.", 
-        descriptionEng: "A giant experimental humanoid with the longest punch reach in the game. An excellent choice for heavily punishing small enemy mistakes.",
-        combos: [{ name: "Overkill Punish", steps: ["f, f+1+2", "sg+4"], damage: "~80", noteIndo: "10f punish champion", noteEng: "10f punish champion" }] 
-    },
-    {
-        name: "Geese", 
-        image: "Geese.jpg", 
-        descriptionIndo: "Bos kriminal dari seri Fatal Fury (SNK). Mengandalkan serangan parry atas/bawah yang legendaris dan bar MAX.", 
-        descriptionEng: "The crime boss from the Fatal Fury series (SNK). Features legendary high/low attack reversals and a deadly MAX mode bar.",
-        combos: [{ name: "Rashomon Max", steps: ["Fow+2", "MAX mode", "qcf+1+2"], damage: "~95", noteIndo: "Deadly SNK guest meter", noteEng: "Deadly SNK guest meter" }] 
-    },
-    {
-        name: "Jack-7", 
-        image: "Jack-7.jpg", 
-        descriptionIndo: "Robot militer raksasa yang menjadi andalan para pemain turnamen berkat poke jarak jauhnya yang sangat aman.", 
-        descriptionEng: "A giant military robot widely favored by tournament players thanks to his extremely safe, long-range pokes.",
-        combos: [{ name: "Jack Upper", steps: ["df+2", "f, f+1+2"], damage: "~70", noteIndo: "Amazing range keepout", noteEng: "Amazing range keepout" }] 
-    },
-    {
-        name: "Julia", 
-        image: "Julia.jpg", 
-        descriptionIndo: "Menggunakan Kung Fu berbasis Xin Yi Liu He Quan. Karakter agresif dengan mobilitas tinggi, eksekusi combo cepat.", 
-        descriptionEng: "Utilizes Kung Fu based on Xin Yi Liu He Quan. An aggressive character with high mobility and rapid-fire combo execution.",
-        combos: [{ name: "Party Crasher", steps: ["f, f+1", "d, df+1, 2"], damage: "~75", noteIndo: "Very high execution speed", noteEng: "Very high execution speed" }] 
-    },
-    {
-        name: "Josie", 
-        image: "Josie.jpg", 
-        descriptionIndo: "Model asal Filipina yang menguasai Eskrima and Kickboxing. Karakter lincah yang berfokus pada jebakan Counter Hit.", 
-        descriptionEng: "A model from the Philippines mastering Eskrima and Kickboxing. A nimble character heavily focused on securing Counter Hit traps.",
-        combos: [{ name: "SWS Launcher", steps: ["f+2+3", "Switch stance"], damage: "~73", noteIndo: "Counter-hit oriented", noteEng: "Counter-hit oriented" }] 
-    },
-    {
-        name: "Katarina", 
-        image: "Katarina.jpg", 
-        descriptionIndo: "Petarung asal Brasil dengan gaya Savate. Sangat ramah bagi pemula karena memiliki tombol kombo yang mudah diingat.", 
-        descriptionEng: "A fighter from Brazil utilizing Savate. Highly beginner-friendly due to her easy-to-remember button inputs and simple combo loops.",
-        combos: [{ name: "Harrier Combo", steps: ["uf+4", "Harrier step"], damage: "~68", noteIndo: "Beginner friendly setup", noteEng: "Beginner friendly setup" }] 
-    },
-    {
-        name: "Kazumi", 
-        image: "Kazumi.jpg", 
-        descriptionIndo: "Istri Heihachi yang bertarung dengan gaya Karate Mishima murni yang disederhanakan. Sangat disiplin dan aman.", 
-        descriptionEng: "Heihachi's wife who fights with a fundamentally simplified, pure Mishima Karate style. Extremely disciplined and safe to play.",
-        combos: [{ name: "Tiger Summon", steps: ["f, f+2", "Tiger upper"], damage: "~66", noteIndo: "Fundamentally safe poke", noteEng: "Fundamentally safe poke" }] 
-    },
-    {
-        name: "Kunimitsu", 
-        image: "Kunimitsu.jpg", 
-        descriptionIndo: "Ninja wanita lincah yang menggunakan belati kunai. Memiliki pergerakan teleportasi cepat.", 
-        descriptionEng: "A highly agile female ninja armed with a kunai dagger. Features lightning-fast teleportation and evasive maneuvers.",
-        combos: [{ name: "Kunai Teleport", steps: ["qcf+1", "Aerial flip"], damage: "~70", noteIndo: "Highly evasive and fast", noteEng: "Highly evasive and fast" }] 
-    },
-    {
-        name: "Kuma", 
-        image: "Kuma.jpg", 
-        descriptionIndo: "Beruang peliharaan Heihachi yang menguasai 'Kuma Shinken'. Memiliki hit-box unik.", 
-        descriptionEng: "Heihachi's pet bear mastering 'Kuma Shinken'. Possesses a unique, stubby hit-box property.",
-        combos: [{ name: "Salmon Hunting", steps: ["f, f+1+2", "Bear roll"], damage: "~74", noteIndo: "Short legs but big damage", noteEng: "Short legs but big damage" }] 
-    },
-    {
-        name: "Lars", 
-        image: "Lars.jpg", 
-        descriptionIndo: "Pasukan pemberontak bergaya bertarung fiktif yang super cepat dan dinamis. Terkenal sebagai raja pembawa musuh ke ujung stage.", 
-        descriptionEng: "A rebel leader with an ultra-fast, dynamic fictional fighting style. Renowned as one of the best characters for carrying opponents across the stage.",
-        combos: [{ name: "Lightning Screw", steps: ["uf+3", "Silent Entry"], damage: "~72", noteIndo: "Buffed wall carry master", noteEng: "Buffed wall carry master" }] 
-    },
-    {
-        name: "Lei", 
-        image: "Lei.jpg", 
-        descriptionIndo: "Detektif legendaris yang menguasai Kung Fu Lima Bayangan Binatang & Dewa Mabuk. Memiliki total lebih dari 50 kuda-kuda bertarung.", 
-        descriptionEng: "A legendary detective mastering Five Animals Kung Fu & Drunken Boxing. Features an overwhelming total of over 50 unique fighting stances.",
-        combos: [{ name: "Razor Rush Stance", steps: ["f, N+1, 2, 1, 2", "Drunken"], damage: "~68", noteIndo: "50+ unique stances mixup", noteEng: "50+ unique stances mixup" }] 
-    },
-    {
-        name: "Leo", 
-        image: "Leo.jpg",
-        descriptionIndo: "Menguasai seni bela diri Tiongkok, Baji Quan. Karakter yang sangat seimbang, kokoh dalam bertahan.", 
-        descriptionEng: "Master of the Chinese martial art Baji Quan. A highly balanced character who is incredibly solid on defense.",
-        combos: [{ name: "Baji Upper", steps: ["df+2", "Kankho step"], damage: "~70", noteIndo: "Perfect wall travel distance", noteEng: "Perfect wall travel distance" }] 
-    },
-    {
-        name: "Lidia", 
-        image: "Lidia.jpg", 
-        descriptionIndo: "Perdana Menteri Polandia yang menguasai Karate Tradisional Shotokan. Sangat kuat dalam pola serangan maju mendesak.", 
-        descriptionEng: "The Prime Minister of Poland who fights with Traditional Shotokan Karate. Extremely strong at forward-moving rushdown patterns.",
-        combos: [{ name: "Political Strike", steps: ["f, f+2", "Cat Stance"], damage: "~74", noteIndo: "Strong karate rushdown", noteEng: "Strong karate rushdown" }] 
-    },
-    {
-        name: "Master Raven", 
-        image: "Master Raven.jpg", 
-        descriptionIndo: "Agen rahasia penganut Ninjutsu tingkat tinggi. Keunikan utamanya terletak pada posisi bertarung membelakangi lawan.", 
-        descriptionEng: "A high-ranking secret agent practicing advanced Ninjutsu. Her main gimmick involves fighting with her back completely turned to the opponent.",
-        combos: [{ name: "Backturn Launcher", steps: ["b+1+2", "Backturn stance"], damage: "~78", noteIndo: "Tricky hitbox properties", noteEng: "Tricky hitbox properties" }] 
-    },
-    {
-        name: "Marduk", 
-        image: "Marduk.jpg", 
-        descriptionIndo: "Petarung Vale Tudo raksasa berdaya hancur tinggi. Teror utamanya adalah mekanik kuncian lantai (Mount Tackle).", 
-        descriptionEng: "A massive Vale Tudo fighter with devastating destructive power. His primary threat is his terrifying ground-tackle mechanic (Mount Tackle).",
-        combos: [{ name: "Mount Tackle Smash", steps: ["VTS stance", "1+2", "Grab"], damage: "~85", noteIndo: "Terrifying grab threat", noteEng: "Terrifying grab threat" }] 
-    },
-    {
-        name: "Miguel", 
-        image: "Miguel.jpg", 
-        descriptionIndo: "Brawler asal Spanyol dengan gaya berantem jalanan yang liar dan kasar. Mengandalkan jangkauan langkah kaki yang lebar.", 
-        descriptionEng: "A Spanish brawler with a wild, rough, and lawless street fighting style. Relies heavily on wide-stepping movement and long reach.",
-        combos: [{ name: "Savage Launcher", steps: ["Savage+df+1", "f, f+1"], damage: "~75", noteIndo: "Heavy brawler rush", noteEng: "Heavy brawler rush" }] 
-    },
-    {
-        name: "Negan", 
-        image: "Negan.jpg", 
-        descriptionIndo: "Karakter tamu ikonik dari serial The Walking Dead. Bertarung menggunakan pemukul kasti kawat berduri 'Lucille'.", 
-        descriptionEng: "The iconic guest character from The Walking Dead series. Fights using his barbed-wire baseball bat named 'Lucille'.",
-        combos: [{ name: "Lucille Home Run", steps: ["f, f+1+2", "Intimidate"], damage: "~76", noteIndo: "Walking Dead crossover smash", noteEng: "Walking Dead crossover smash" }] 
-    },
-    {
-        name: "Nina", 
-        image: "Nina.jpg", 
-        descriptionIndo: "Pembunuh bayaran berdarah dingin yang menggunakan Aikido dan Koppojutsu. Memiliki tingkat kesulitan eksekusi jari tertinggi.", 
-        descriptionEng: "A cold-blooded assassin utilizing Aikido and Koppojutsu. Features one of the highest execution barriers due to her complex execution requirements.",
-        combos: [{ name: "Butterfly Loop", steps: ["qcf+1", "iWS+1", "Repeat"], damage: "~80", noteIndo: "Extremely high execution loop", noteEng: "Extremely high execution loop" }] 
-    },
-    {
-        name: "Noctis", 
-        image: "Noctis.jpg", 
-        descriptionIndo: "Pangeran dari Final Fantasy XV. Mampu memanggil pedang dan tombak sihir dari jarak jauh.", 
-        descriptionEng: "The prince from Final Fantasy XV. Capable of summoning magical swords, spears, and shields from long range.",
-        combos: [{ name: "Warp Strike Punish", steps: ["f+2+3", "f, f+1"], damage: "~70", noteIndo: "Full-screen long range launcher", noteEng: "Full-screen long range launcher" }] 
-    },
-    {
-        name: "Panda", 
-        image: "Panda.jpg", 
-        descriptionIndo: "Sahabat Ling Xiaoyu yang berbagi set gerakan yang sama dengan Kuma, namun memiliki Rage Art kosmetik yang berbeda.", 
-        descriptionEng: "Ling Xiaoyu's loyal companion who shares the exact same moveset with Kuma, but features a different cosmetic Rage Art.",
-        combos: [{ name: "Bear Hug Slam", steps: ["df+1+2", "Sit stance"], damage: "~74", noteIndo: "Same as Kuma combo properties", noteEng: "Same as Kuma combo properties" }] 
-    },
-    {
-        name: "Shaheen", 
-        image: "Shaheen.jpg", 
-        descriptionIndo: "Petarung militer asal Arab Saudi yang fokus pada fundamental murni bela diri praktis.", 
-        descriptionEng: "A military fighter from Saudi Arabia who heavily relies on pure, fundamental martial arts utility.",
-        combos: [{ name: "Stealth Step Slide", steps: ["df+2", "Slide cancel"], damage: "~68", noteIndo: "Basic fundamental setup", noteEng: "Basic fundamental setup" }] 
-    },
-    {
-        name: "Zafina", 
-        image: "Zafina.jpg", 
-        descriptionIndo: "Petarung kuno yang bergerak lincah merayap bak laba-laba. Punya hitbox tubuh terendah.", 
-        descriptionEng: "An ancient warrior who moves fluidly, crawling low like a spider. Possesses some of the best evasive hurtboxes in the game.",
-        combos: [{ name: "Scarecrow Launcher", steps: ["Scarecrow+df+4", "f, f+1"], damage: "~74", noteIndo: "Top tier evasive movement", noteEng: "Top tier evasive movement" }] 
-    }
+       const characters = [
+            {name:"Kazuya", image:"Kazuya.jpg", description:"Petarung Mishima sejati dengan gaya karate tingkat tinggi. Mengandalkan serangan legendaris EWGF (Electric Wind God Fist) dan tebakan 50/50 vortex yang mematikan saat musuh jatuh.", combos:[{name:"EWGF Punish", steps:["f", "N", "d", "df+1"], damage:"~80+", note:"Signature pro Mishima"}] },
+            {name:"Jin", image:"Jin.jpg", description:"Protagonis yang menguasai Karate Tradisional. Karakter yang sangat seimbang (all-rounder) dengan poke yang aman, parry unik, serta combo yang konsisten di segala situasi.", combos:[{name:"10f Kazama", steps:["1, 2, 1, 2", "f+1, 2, 4"], damage:"~68", note:"Reliable block punish"}] },
+            {name:"Paul", image:"Paul.jpg", description:"Karakter legendaris bermodal bela diri Judo dan Karate. Terkenal dengan 'Deathfist'-nya yang punya damage di luar nalar. Sangat kuat dalam urusan serangan balasan (Counter Hit).", combos:[{name:"Deathfist CH", steps:["qcf+2 (CH)", "f, f+1+2"], damage:"~78", note:"Insane power damage"}] },
+            {name:"Lili", image:"Lili.jpg", description:"Gadis kaya asal Monako dengan gaya bertarung jalanan yang anggun bak senam gimnastik. Punya pergerakan menyamping (sidestep) terbaik untuk menghindari serangan musuh.", combos:[{name:"Dew Glide Punish", steps:["f, f+4", "1, 2", "f+1+2"], damage:"~72", note:"Stylish launcher"}] },
+            {name:"Asuka", image:"Asuka.jpg", description:"Menguasai Seni Bela Diri Tradisional Gaya Kazama. Ratu pertahanan yang ahli membalikkan serangan (parry) dan memiliki counter hit maut untuk menghukum musuh yang tidak sabaran.", combos:[{name:"Sacred Blade", steps:["d, df+1+2", "f, f+1, 2"], damage:"~62", note:"Very safe panic tool launcher"}] },
+            {name:"Bryan", image:"Bryan.jpg", description:"Cyborg gila penganut Kickboxing yang brutal. Kuat dalam menjaga jarak (keep-out) dan memiliki mekanik 'Taunt' yang tidak bisa diblokir oleh lawan jika dieksekusi dengan sempurna.", combos:[{name:"Taunt Jet Upper", steps:["TAUNT", "f+2", "b+1"], damage:"~85", note:"Frame perfect pro combo"}] },
+            {name:"Dragunov", image:"Dragunov.jpg", description:"Tentara Rusia yang menggunakan Sambo Militer. Spesialis tekanan konstan (pressure) lewat pukulan 'Running 2' dan kuncian bawah tanah yang menyiksa mental lawan.", combos:[{name:"WR 2 Punish", steps:["f, f, f+2", "d+2, 4", "f, f+1+2"], damage:"~68", note:"Excellent pressure starter"}] },
+            {name:"Heihachi", image:"Heihachi.jpg", description:"Mantan kepala keluarga Mishima dengan gaya bertarung super agresif. Punya serangan mid-hit terbaik and EWGF super cepat.", combos:[{name:"EWGF", steps:["f", "N", "d", "df+1"], damage:"~78", note:"Excellent recovery"}] },
+            {name:"Lee", image:"Lee.jpg", description:"Karakter paling elegan yang bertarung dengan gaya 'Excellent' seni bela diri fiktif. Sangat kuat dalam serangan balik jarak dekat.", combos:[{name:"Hitman Launcher", steps:["d+3+4", "WS+2, 4"], damage:"~75", note:"Excellent and elegant"}] },
+            {name:"Leroy", image:"Leroy.jpg", description:"Grandmaster Wing Chun asal New York yang sangat karismatik. Dilengkapi dengan sistem parry otomatis terbaik.", combos:[{name:"Parry Combo", steps:["b+1+3", "Parry", "f+2, 4"], damage:"High", note:"Grandmaster defense"}] },
+            {name:"Steve", image:"Steve.jpg", description:"Petinju juara dunia yang tidak menggunakan tendangan sama sekali. Gaya mainnya berfokus pada kelincahan menghindar (sway/ducking).", combos:[{name:"Sonic Blaster", steps:["b+1 (CH)", "df+1+2", "f, f+2"], damage:"~76", note:"Fastest boxing counter counter-hit"}] },
+            {name:"Hwoarang", image:"Hwoarang.jpg", description:"Ahli Taekwondo asal Korea Selatan yang punya variasi tendangan tanpa batas. Mengandalkan transisi kuda-kuda (stance) yang membingungkan musuh.", combos:[{name:"Skyrocket Launcher", steps:["f, N, d, df+4", "During Flamingo", "uf+3, 4, 4"], damage:"~82", note:"Just-frame execution heavy"}] },
+            {name:"Alisa", image:"Alisa.jpg", description:"Cyborg dengan gaya bertarung unik bertenaga jet pendorong. Mampu mengeluarkan gergaji mesin (chainsaw) dari tangannya.", combos:[{name:"Chainsaw Upper", steps:["d+1+2", "f, f+1+2"], damage:"~65", note:"High reach safety"}] },
+            {name:"Akuma", image:"Akuma.jpg", description:"Karakter tamu dari Street Fighter yang membawa mekanik game 2D ke Tekken. Punya proyektil (Hadouken), meter EX, dan combo FADC.", combos:[{name:"Fadc Hadouken", steps:["f, d, df+2", "FADC", "f, f+2, 4"], damage:"~90+", note:"Guest style resource heavy"}] },
+            {name:"Armor King", image:"Armor King.jpg", description:"Pegulat topeng misterius penganut Pro-Wrestling gelap. Kombinasi mematikan antara teknik bantingan berdamage besar dan pukulan Mishima.", combos:[{name:"Dark Upper", steps:["f, N, d, df+2", "f, f+1+2"], damage:"~74", note:"Grappler launcher"}] },
+            {name:"Anna", image:"Anna.jpg", description:"Adik dari Nina yang menggunakan teknik pembunuhan berbasis mix-up instan lewat kuda-kuda 'Chaos Judgment'.", combos:[{name:"Chaos Judgment", steps:["df+1+2", "f, f+4"], damage:"~70", note:"Mix-up setup"}] },
+            {name:"Bob", image:"Bob.jpg", description:"Petarung berbadan besar namun memiliki kecepatan luar biasa. Menggunakan Karate Gaya Bebas dengan kelincahan udara.", combos:[{name:"Starburst Burst", steps:["f, f+2", "b+1+2"], damage:"~75", note:"Star power active"}] },
+            {name:"Chole", image:"Chloe.jpg", description:"Gadis dengan kostum kucing penari J-Pop. Menipu lawan dengan tarian ritme yang menggemaskan, namun menyimpan damage combo tertinggi.", combos:[{name:"California Roll", steps:["db+3+4", "3, 4", "1+2"], damage:"~95", note:"Absurdly high damage rhythm"}] },
+            {name:"Devil Jin", image:"Devil Jin.jpg", description:"Jin versi iblis yang mempertahankan gaya bela diri Mishima klasik. Memiliki laser, serangan udara, dan paket move-list terlengkap.", combos:[{name:"PEWGF Punish", steps:["f, N, df+1", "f, f+1+2"], damage:"~84", note:"Top tier execution"}] },
+            {name:"Eddy", image:"Eddy.jpg", description:"Ikon Capoeira yang terkenal dengan gerakan memutar dan tiarap yang ekstrem. Sangat ahli dalam menghindari serangan.", combos:[{name:"Capoeira Slippery", steps:["df+3+4", "3, 4"], damage:"~65", note:"Evasive stance launcher"}] },
+            {name:"Eliza", image:"Eliza.jpg", description:"Vampir yang menggunakan sistem meter 2D ala game fighting klasik. Mengandalkan serangan proyektil dan taktik jebakan saat musuh tidur.", combos:[{name:"Moonglide Ex", steps:["qcf+1+2", "Ex Jump"], damage:"~70", note:"Meter reliance"}] },
+            {name:"Fahkumram", image:"Fahkumram.jpg", description:"Raksasa Muay Thai asal Thailand. Monster dalam mendesak lawan ke ujung stage (wall carry).", combos:[{name:"Muay Thai Knee", steps:["df+1+2", "f, f+4"], damage:"~75", note:"Wall-carry beast"}] },
+            {name:"Ganryu", image:"Ganryu.jpg", description:"Pesumo handal dengan jangkauan tangan yang lebar. Sangat dominan dalam pertarungan jarak dekat lewat tamparan bertubi-turbi.", combos:[{name:"Sumo Stomp Launcher", steps:["df+2+3", "f, f+1"], damage:"~72", note:"Heavy pressure tool"}] },
+            {name:"Gigas", image:"Gigas.jpg", description:"Manusia eksperimen raksasa dengan jangkauan pukulan terjauh. Karakter andalan untuk menghukum kesalahan kecil musuh.", combos:[{name:"Overkill Punish", steps:["f, f+1+2", "sg+4"], damage:"~80", note:"10f punish champion"}] },
+            {name:"Geese", image:"Geese.jpg", description:"Bos kriminal dari seri Fatal Fury (SNK). Mengandalkan serangan parry atas/bawah yang legendaris dan bar MAX.", combos:[{name:"Rashomon Max", steps:["Fow+2", "MAX mode", "qcf+1+2"], damage:"~95", note:"Deadly SNK guest meter"}] },
+            {name:"Jack-7", image:"Jack-7.jpg", description:"Robot militer raksasa yang menjadi andalan para pemain turnamen berkat poke jarak jauhnya yang sangat aman.", combos:[{name:"Jack Upper", steps:["df+2", "f, f+1+2"], damage:"~70", note:"Amazing range keepout"}] },
+            {name:"Julia", image:"Julia.jpg", description:"Menggunakan Kung Fu berbasis Xin Yi Liu He Quan. Karakter agresif dengan mobilitas tinggi, eksekusi combo cepat.", combos:[{name:"Party Crasher", steps:["f, f+1", "d, df+1, 2"], damage:"~75", note:"Very high execution speed"}] },
+            {name:"Josie", image:"Josie.jpg", description:"Model asal Filipina yang menguasai Eskrima dan Kickboxing. Karakter lincah yang berfokus pada jebakan Counter Hit.", combos:[{name:"SWS Launcher", steps:["f+2+3", "Switch stance"], damage:"~73", note:"Counter-hit oriented"}] },
+            {name:"Katarina", image:"Katarina.jpg", description:"Petarung asal Brasil dengan gaya Savate. Sangat ramah bagi pemula karena memiliki tombol kombo yang mudah diingat.", combos:[{name:"Harrier Combo", steps:["uf+4", "Harrier step"], damage:"~68", note:"Beginner friendly setup"}] },
+            {name:"Kazumi", image:"Kazumi.jpg", description:"Istri Heihachi yang bertarung dengan gaya Karate Mishima murni yang disederhanakan. Sangat disiplin dan aman.", combos:[{name:"Tiger Summon", steps:["f, f+2", "Tiger upper"], damage:"~66", note:"Fundamentally safe poke"}] },
+            {name:"Kunimitsu", image:"Kunimitsu.jpg", description:"Ninja wanita lincah yang menggunakan belati kunai. Memiliki pergerakan teleportasi cepat.", combos:[{name:"Kunai Teleport", steps:["qcf+1", "Aerial flip"], damage:"~70", note:"Highly evasive and fast"}] },
+            {name:"Kuma", image:"Kuma.jpg", description:"Beruang peliharaan Heihachi yang menguasai 'Kuma Shinken'. Memiliki hit-box unik.", combos:[{name:"Salmon Hunting", steps:["f, f+1+2", "Bear roll"], damage:"~74", note:"Short legs but big damage"}] },
+            {name:"Lars", image:"Lars.jpg", description:"Pasukan pemberontak bergaya bertarung fiktif yang super cepat dan dinamis. Terkenal sebagai raja pembawa musuh ke ujung stage.", combos:[{name:"Lightning Screw", steps:["uf+3", "Silent Entry"], damage:"~72", note:"Buffed wall carry master"}] },
+            {name:"Lei", image:"Lei.jpg", description:"Detektif legendaris yang menguasai Kung Fu Lima Bayangan Binatang & Dewa Mabuk. Memiliki total lebih dari 50 kuda-kuda bertarung.", combos:[{name:"Razor Rush Stance", steps:["f, N+1, 2, 1, 2", "Drunken"], damage:"~68", note:"50+ unique stances mixup"}] },
+            {name:"Leo", image:"Leo.jpg", description:"Menguasai seni bela diri Tiongkok, Baji Quan. Karakter yang sangat seimbang, kokoh dalam bertahan.", combos:[{name:"Baji Upper", steps:["df+2", "Kankho step"], damage:"~70", note:"Perfect wall travel distance"}] },
+            {name:"Lidia", image:"Lidia.jpg", description:"Perdana Menteri Polandia yang menguasai Karate Tradisional Shotokan. Sangat kuat dalam pola serangan maju mendesak.", combos:[{name:"Political Strike", steps:["f, f+2", "Cat Stance"], damage:"~74", note:"Strong karate rushdown"}] },
+            {name:"Master Raven", image:"Master Raven.jpg", description:"Agen rahasia penganut Ninjutsu tingkat tinggi. Keunikan utamanya terletak pada posisi bertarung membelakangi lawan.", combos:[{name:"Backturn Launcher", steps:["b+1+2", "Backturn stance"], damage:"~78", note:"Tricky hitbox properties"}] },
+            {name:"Marduk", image:"Marduk.jpg", description:"Petarung Vale Tudo raksasa berdaya hancur tinggi. Teror utamanya adalah mekanik kuncian lantai (Mount Tackle).", combos:[{name:"Mount Tackle Smash", steps:["VTS stance", "1+2", "Grab"], damage:"~85", note:"Terrifying grab threat"}] },
+            {name:"Miguel", image:"Miguel.jpg", description:"Brawler asal Spanyol dengan gaya berantem jalanan yang liar dan kasar. Mengandalkan jangkauan langkah kaki yang lebar.", combos:[{name:"Savage Launcher", steps:["Savage+df+1", "f, f+1"], damage:"~75", note:"Heavy brawler rush"}] },
+            {name:"Negan", image:"Negan.jpg", description:"Karakter tamu ikonik dari serial The Walking Dead. Bertarung menggunakan pemukul kasti kawat berduri 'Lucille'.", combos:[{name:"Lucille Home Run", steps:["f, f+1+2", "Intimidate"], damage:"~76", note:"Walking Dead crossover smash"}] },
+            {name:"Nina", image:"Nina.jpg", description:"Pembunuh bayaran berdarah dingin yang menggunakan Aikido dan Koppojutsu. Memiliki tingkat kesulitan eksekusi jari tertinggi.", combos:[{name:"Butterfly Loop", steps:["qcf+1", "iWS+1", "Repeat"], damage:"~80", note:"Extremely high execution loop"}] },
+            {name:"Noctis", image:"Noctis.jpg", description:"Pangeran dari Final Fantasy XV. Mampu memanggil pedang dan tombak sihir dari jarak jauh.", combos:[{name:"Warp Strike Punish", steps:["f+2+3", "f, f+1"], damage:"~70", note:"Full-screen long range launcher"}] },
+            {name:"Panda", image:"Panda.jpg", description:"Sahabat Ling Xiaoyu yang berbagi set gerakan yang sama dengan Kuma, namun memiliki Rage Art kosmetik yang berbeda.", combos:[{name:"Bear Hug Slam", steps:["df+1+2", "Sit stance"], damage:"~74", note:"Same as Kuma combo properties"}] },
+            {name:"Shaheen", image:"Shaheen.jpg", description:"Petarung militer asal Arab Saudi yang fokus pada fundamental murni bela diri praktis.", combos:[{name:"Stealth Step Slide", steps:["df+2", "Slide cancel"], damage:"~68", note:"Basic fundamental setup"}] },
+            {name:"Zafina", image:"Zafina.jpg", description:"Petarung kuno yang bergerak lincah merayap bak laba-laba. Punya hitbox tubuh terendah.", combos:[{name:"Scarecrow Launcher", steps:["Scarecrow+df+4", "f, f+1"], damage:"~74", note:"Top tier evasive movement"}] }
+
 ];
 
         function formatTekkenButtons(text) {
